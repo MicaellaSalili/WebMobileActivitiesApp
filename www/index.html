@@ -1,27 +1,128 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Web & Mobile Activities</title>
+    <title>Web and Mobile Systems Activities</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
-        h1 { color: #333; }
-        .activity { margin: 10px 0; padding: 15px; background: #f0f0f0; border-radius: 5px; }
-        button { padding: 10px 20px; margin: 10px; background: #007bff; color: white; border: none; border-radius: 5px; }
-        button:hover { background: #0056b3; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .portfolio-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .activity {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .activity:hover {
+            transform: scale(1.02);
+        }
+        .activity h3 {
+            margin: 0;
+            color: #007bff;
+        }
+        .activity p {
+            margin: 5px 0 0;
+            color: #666;
+        }
+        #deviceInfo {
+            text-align: center;
+            color: #888;
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+        #deviceready .listening, #deviceready .received {
+            text-align: center;
+            color: #888;
+        }
+        #deviceready .received { display: none; }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+        }
+        .modal-content h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #333;
+        }
     </style>
 </head>
 <body>
-    <h1>My Web & Mobile Systems Portfolio</h1>
-    <div id="activityList">
-        <div class="activity">Activity 1: Developed a responsive portfolio website using HTML, CSS, and JavaScript.</div>
-        <div class="activity">Activity 2: Built a mobile-friendly task manager with React Native.</div>
-        <!-- Add your activities here -->
+    <div class="portfolio-container">
+        <h1>My Web & Mobile Systems Portfolio</h1>
+        <div id="activityList">
+            <div class="activity" data-id="1">
+                <h3>PUP Hymn Website</h3>
+                <p>A website showcasing the PUP Hymn with lyrics and audio playback.</p>
+            </div>
+            <div class="activity" data-id="2">
+                <h3>Jakes Coffee Shop</h3>
+                <p>An online coffee shop interface with menu and order features.</p>
+            </div>
+            <div class="activity" data-id="3">
+                <h3>PUP Kiosk Map</h3>
+                <p>An interactive map for navigating PUP campus kiosks.</p>
+            </div>
+            <div class="activity" data-id="4">
+                <h3>Calculator</h3>
+                <p>A web-based calculator for basic arithmetic operations.</p>
+            </div>
+            <div class="activity" data-id="5">
+                <h3>Registration Form</h3>
+                <p>A form for user registration with validation and submission.</p>
+            </div>
+        </div>
+        <p id="deviceInfo"></p>
+        <div id="deviceready">
+            <p class="event listening">Connecting to Device</p>
+            <p class="event received">Device is Ready</p>
+        </div>
     </div>
-    <button id="addActivity">Add New Activity</button>
-    <div id="deviceready">
-        <p class="event listening">Connecting to Device</p>
-        <p class="event received">Device is Ready</p>
+    <!-- Modal for Activity Details -->
+    <div id="activityModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <p id="modalDescription"></p>
+        </div>
     </div>
     <p>Running on: <span id="deviceInfo"></span></p>
     <script src="cordova.js"></script>
